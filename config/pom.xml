@@ -4,12 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>dev.ethanz0x0</groupId>
+        <groupId>io.github.ethanz0x0</groupId>
         <artifactId>nucleus</artifactId>
-        <version>1.0-beta1</version>
+        <version>1.0.0-beta3</version>
     </parent>
 
     <artifactId>nucleus-config</artifactId>
+
+    <name>nucleus-config</name>
+    <description>Config module for nucleus</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -22,7 +25,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -33,21 +35,21 @@
                             <relocations>
                                 <relocation>
                                     <pattern>org.snakeyaml.engine</pattern>
-                                    <shadedPattern>dev.ethanz0x0.nucleus.external.snakeyaml</shadedPattern>
+                                    <shadedPattern>io.github.ethanz0x0.nucleus.external.org.snakeyaml.engine</shadedPattern>
                                 </relocation>
-
                                 <relocation>
                                     <pattern>com.google.gson</pattern>
-                                    <shadedPattern>dev.ethanz0x0.nucleus.external.gson</shadedPattern>
+                                    <shadedPattern>io.github.ethanz0x0.nucleus.external.com.google.gson</shadedPattern>
                                 </relocation>
                             </relocations>
 
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>shaded</shadedClassifierName>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
