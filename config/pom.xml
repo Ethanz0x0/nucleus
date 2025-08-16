@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.ethanz0x0</groupId>
         <artifactId>nucleus</artifactId>
-        <version>1.0.0-beta3</version>
+        <version>1.0.0-beta4</version>
     </parent>
 
     <artifactId>nucleus-config</artifactId>
@@ -42,17 +42,12 @@
                                     <shadedPattern>io.github.ethanz0x0.nucleus.external.com.google.gson</shadedPattern>
                                 </relocation>
                             </relocations>
-
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <shadedArtifactAttached>false</shadedArtifactAttached>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
 
     <dependencies>
         <dependency>
