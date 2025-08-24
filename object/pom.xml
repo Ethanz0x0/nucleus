@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.ethanz0x0</groupId>
         <artifactId>nucleus</artifactId>
-        <version>1.0.0-beta5</version>
+        <version>1.0.0-beta6</version>
     </parent>
 
     <artifactId>nucleus-object</artifactId>
