@@ -16,7 +16,6 @@ public final class TimeUtil {
      *
      * @param totalSeconds
      *        The total number of seconds to format
-     *
      * @return
      *         A formatted time string in either {@code mm:ss} or {@code HH:mm:ss} format
      */
