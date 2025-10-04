@@ -5,12 +5,12 @@ which help to reduce boilerplate code and offer alternative paradigms for creati
 nucleus supports **Java 1.8** or above.
 
 ### Modules
+##### [`nucleus-common`](https://github.com/Ethanz0x0/nucleus/tree/master/common): Provides common used classes and utilities.
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.ethanz0x0/nucleus-common.svg) ![Javadoc Version](https://javadoc.io/badge/io.github.ethanz0x0/nucleus-common.svg)
 ##### [`nucleus-config`](https://github.com/Ethanz0x0/nucleus/tree/master/config): Provides simplified ways to manage config.
 ![Maven Central Version](https://img.shields.io/maven-central/v/io.github.ethanz0x0/nucleus-config.svg) ![Javadoc Version](https://javadoc.io/badge/io.github.ethanz0x0/nucleus-config.svg)
 ##### [`nucleus-object`](https://github.com/Ethanz0x0/nucleus/tree/master/object): Provides object operations.
 ![Maven Central Version](https://img.shields.io/maven-central/v/io.github.ethanz0x0/nucleus-object.svg) ![Javadoc Version](https://javadoc.io/badge/io.github.ethanz0x0/nucleus-object.svg)
-##### [`nucleus-common`](https://github.com/Ethanz0x0/nucleus/tree/master/common): Provides common used classes and utilities.
-![Maven Central Version](https://img.shields.io/maven-central/v/io.github.ethanz0x0/nucleus-common.svg) ![Javadoc Version](https://javadoc.io/badge/io.github.ethanz0x0/nucleus-common.svg)
 
 ### Adding originext to your project
 **How to**: Add the dependency to pom.xml in your project:
@@ -34,7 +34,3 @@ nucleus supports **Java 1.8** or above.
 
 `-pr` - Pre-release version. <br>
 `-beta` - Beta test version. <br>
-`-unstable` - Internal testing. (Very unstable!) <br>
-
-##### Version naming rule (e.g. 1.3.2):
-**X** (Major code changes) **. X** (Minor functional updates) **. X** (Bug fixes/Minor changes)
