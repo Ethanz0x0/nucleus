@@ -15,13 +15,16 @@ public class HostPort {
 
     /**
      * Parses a IPv4 or IPv6 string as a {@code HostPort} instance.
+     * If no port is provided in the input, the default port will be applied.
      *
      * @param input
      *        IPv4 or IPv6 string to be parsed
+     * @param defaultPort
+     *        Default port applied when no port is provided in the input
      * @return
      *         The {@code HostPort} instance
      */
-    public static HostPort fromString(String input) {
+    public static HostPort fromString(String input, Integer defaultPort) {
         String trimmedInput = input.trim();
 
         String hostPart;
@@ -55,7 +58,19 @@ public class HostPort {
             }
         }
 
-        return new HostPort(hostPart, port);
+        return new HostPort(hostPart, port == null ? defaultPort : port);
+    }
+
+    /**
+     * Parses a IPv4 or IPv6 string as a {@code HostPort} instance without default port.
+     *
+     * @param input
+     *        IPv4 or IPv6 string to be parsed
+     * @return
+     *         The {@code HostPort} instance
+     */
+    public static HostPort fromString(String input) {
+        return HostPort.fromString(input, null);
     }
 
     private static boolean isValidIPv4(String host) {

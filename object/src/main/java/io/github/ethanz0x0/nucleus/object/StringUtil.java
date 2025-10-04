@@ -1,9 +1,6 @@
 package io.github.ethanz0x0.nucleus.object;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -139,6 +136,40 @@ public class StringUtil {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
+    }
+
+    /**
+     * Splits a string into multiple substrings of a specified maximum length
+     *
+     * @param input
+     *        The string to split
+     * @param maxLength
+     *        The maximum length of each substring
+     * @return
+     *        A list containing all substrings of the specified length
+     */
+    public static List<String> splitStringIntoChunks(String input, int maxLength) {
+        List<String> chunks = new ArrayList<>();
+        int length = input.length();
+
+        for (int i = 0; i < length; i += maxLength) {
+            int end = Math.min(i + maxLength, length);
+            chunks.add(input.substring(i, end));
+        }
+
+        return chunks;
+    }
+
+    /**
+     * Splits a string into a list of strings by line breaker '\n'
+     *
+     * @param input
+     *        The input string to split
+     * @return
+     *        A list of strings split by line breakers
+     */
+    public static List<String> splitStringByNewline(String input) {
+        return new ArrayList<>(Arrays.asList(input.split("\n")));
     }
 
     /**
