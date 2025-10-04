@@ -12,7 +12,7 @@ nucleus supports **Java 1.8** or above.
 ##### [`nucleus-object`](https://github.com/Ethanz0x0/nucleus/tree/master/object): Provides object operations.
 ![Maven Central Version](https://img.shields.io/maven-central/v/io.github.ethanz0x0/nucleus-object.svg) ![Javadoc Version](https://javadoc.io/badge/io.github.ethanz0x0/nucleus-object.svg)
 
-### Adding originext to your project
+### Adding nucleus to your project
 **How to**: Add the dependency to pom.xml in your project:
 ```xml
 <dependencies>
