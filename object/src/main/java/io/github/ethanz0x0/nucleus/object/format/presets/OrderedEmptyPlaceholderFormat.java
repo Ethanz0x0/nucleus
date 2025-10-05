@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 
 public class OrderedEmptyPlaceholderFormat extends Format {
 
-    public static OrderedEmptyPlaceholderFormat create(Object... replacers) {
-        return new OrderedEmptyPlaceholderFormat(replacers);
+    public static OrderedEmptyPlaceholderFormat create(Object... replacements) {
+        return new OrderedEmptyPlaceholderFormat(replacements);
     }
 
     private final NumericOrderedPlaceholderFormat placeholderFormat;
 
-    private OrderedEmptyPlaceholderFormat(Object... replacers) {
+    private OrderedEmptyPlaceholderFormat(Object... replacements) {
         this.placeholderFormat = NumericOrderedPlaceholderFormat.builder()
                 .placeholderSection("{@a}")
-                .replacements(replacers)
+                .replacements(replacements)
                 .build();
     }
 

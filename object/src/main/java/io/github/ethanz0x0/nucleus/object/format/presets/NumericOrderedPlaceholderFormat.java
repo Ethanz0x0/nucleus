@@ -13,11 +13,11 @@ public class NumericOrderedPlaceholderFormat extends Format {
 
     private final PlaceholderFormat placeholderFormat;
 
-    private NumericOrderedPlaceholderFormat(String placeholderSection, Object... replacers) {
+    private NumericOrderedPlaceholderFormat(String placeholderSection, Object... replacements) {
         PlaceholderFormat.Builder builder = PlaceholderFormat.builder().placeholderSection(placeholderSection);
         int index = 0;
-        for (Object replacer : replacers) {
-            builder.append(String.valueOf(index), replacer);
+        for (Object replacement : replacements) {
+            builder.append(String.valueOf(index), replacement);
             index ++;
         }
         placeholderFormat = builder.build();

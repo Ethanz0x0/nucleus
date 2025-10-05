@@ -82,8 +82,8 @@ public class PlaceholderFormat extends Format {
             return this;
         }
 
-        public Builder append(String placeholder, Object replacer) {
-            replacementTable.put(placeholder, replacer);
+        public Builder append(String placeholder, Object replacement) {
+            replacementTable.put(placeholder, replacement);
             return this;
         }
 

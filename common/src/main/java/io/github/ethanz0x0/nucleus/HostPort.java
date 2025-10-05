@@ -9,8 +9,20 @@ import java.util.regex.Pattern;
 public class HostPort {
 
     private static final int MAX_PORT = 65535;
+
+    // IPv4 pattern: 0.0.0.0 - 255.255.255.255
     private static final Pattern IPV4_PATTERN = Pattern.compile("^(\\d{1,3}\\.){3}\\d{1,3}$");
+
+    // IPv6 pattern: [::1] style
     private static final Pattern IPV6_PATTERN = Pattern.compile("^\\[([a-fA-F0-9:]+)]$");
+
+    // Strict hostname pattern according to RFC 1035
+    // Each label: 1-63 chars, letters/digits/hyphen, no hyphen at start/end
+    // Total length <= 253
+    private static final Pattern HOSTNAME_PATTERN = Pattern.compile(
+            "^(?=.{1,253}$)([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)*" +
+                    "([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$"
+    );
 
 
     /**
@@ -42,7 +54,7 @@ public class HostPort {
             hostPart = trimmedInput;
         }
 
-        if (!isValidIPv4(hostPart) && !isValidIPv6(hostPart)) {
+        if (!isValidIPv4(hostPart) && !isValidIPv6(hostPart) && !isValidHostname(hostPart)) {
             throw new IllegalArgumentException("Invalid host: " + hostPart);
         }
 
@@ -85,6 +97,11 @@ public class HostPort {
 
     private static boolean isValidIPv6(String host) {
         return IPV6_PATTERN.matcher(host).matches();
+    }
+
+
+    private static boolean isValidHostname(String host) {
+        return HOSTNAME_PATTERN.matcher(host).matches();
     }
 
     private final String host;
