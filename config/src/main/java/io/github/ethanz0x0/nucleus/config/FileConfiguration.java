@@ -19,7 +19,7 @@ public class FileConfiguration extends Configuration {
         this.adapter = ConfigurationAdapter.getAdapter(adapter);
 
         if (this.adapter == null) {
-            throw new ConfigurationException(new IllegalArgumentException("No such adapter: " + adapter), file);
+            throw new ConfigurationException(new IllegalArgumentException("No such adapter registered: " + adapter.getSimpleName()), file);
         }
 
         if (!file.exists()) {
