@@ -21,27 +21,19 @@ public class YamlConfigurationAdapter extends ConfigurationAdapter {
 
     private static final Logger logger = Logger.getLogger(YamlConfigurationAdapter.class.getName());
 
-    private final Supplier<Dump> yamlDumperSupplier = () -> {
+    private final Supplier<Dump> dumpSupplier = () -> {
         DumpSettings settings = DumpSettings.builder()
                 .setDefaultFlowStyle(FlowStyle.BLOCK)
                 .build();
         return new Dump(settings, new Representer(settings));
     };
 
-    private final Supplier<Load> yamlLoaderSupplier = () -> {
+    private final Supplier<Load> loadSupplier = () -> {
         LoadSettings settings = LoadSettings.builder().build();
         return new Load(settings);
     };
 
     private YamlConfigurationAdapter() {
-    }
-
-    public Dump getYamlDumper() {
-        return yamlDumperSupplier.get();
-    }
-
-    public Load getYamlLoader() {
-        return yamlLoaderSupplier.get();
     }
 
     @Override
@@ -54,7 +46,7 @@ public class YamlConfigurationAdapter extends ConfigurationAdapter {
     @Override
     @SuppressWarnings("unchecked")
     public Configuration load(InputStream in) {
-        Map<String, Object> map = (Map<String, Object>) getYamlLoader().loadFromInputStream(in);
+        Map<String, Object> map = (Map<String, Object>) loadSupplier.get().loadFromInputStream(in);
         if (map == null) {
             map = new LinkedHashMap<>();
         }
@@ -70,7 +62,7 @@ public class YamlConfigurationAdapter extends ConfigurationAdapter {
 
     @Override
     public void save(Configuration config, Writer writer) {
-        getYamlDumper().dump(config.getMap(), new StreamDataWriter() {
+            dumpSupplier.get().dump(config.getMap(), new StreamDataWriter() {
             @Override
             public void write(String str) {
                 try {

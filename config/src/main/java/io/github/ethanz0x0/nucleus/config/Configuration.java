@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Configuration {
 
-    private final Map<String, Object> map = new LinkedHashMap<>();
+    private final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 
     public Configuration(Map<?, ?> map) {
         load(map);
@@ -17,7 +17,7 @@ public class Configuration {
         });
     }
 
-    public Map<String, Object> getMap() {
+    public LinkedHashMap<String, Object> getMap() {
         return map;
     }
 
