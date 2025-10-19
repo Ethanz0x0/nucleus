@@ -20,7 +20,6 @@ nucleus supports **Java 1.8** or above.
         <groupId>io.github.ethanz0x0</groupId>
         <artifactId>[module]</artifactId>
         <version>[version]</version>
-        <scope>compile</scope>
     </dependency>
 </dependencies>
 ```
