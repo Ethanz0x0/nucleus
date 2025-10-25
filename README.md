@@ -2,7 +2,7 @@
 **nucleus** is a development library for Java developers. It provides a number of utilities and extended APIs
 which help to reduce boilerplate code and offer alternative paradigms for creating content.
 
-nucleus supports **Java 1.8** or above.
+nucleus supports **JDK 1.8** or higher.
 
 ### Modules
 ##### [`nucleus-common`](https://github.com/Ethanz0x0/nucleus/tree/master/common): Provides common used classes and utilities.
@@ -23,13 +23,11 @@ nucleus supports **Java 1.8** or above.
     </dependency>
 </dependencies>
 ```
-##### Placeholders:
 `[module]` - the module you need to import. **See [Modules](#modules).** <br>
 `[version]` - the module version.
 
 ### About Project
-##### Version suffixes:
-##### `no suffixes` - **Release version.**
-
-`-pr` - Pre-release version. <br>
-`-beta` - Beta test version. <br>
+**nucleus** is a project created in 2024 initially for internal use for Hyko Team.
+As we added more function and modules to nucleus, we decided to make it open source on GitHub in early 2025.
+And now we are positively maintaining this project. If you have any problems using this project,
+please open issues **[here](https://github.com/Ethanz0x0/nucleus/issues)**.
