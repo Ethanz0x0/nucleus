@@ -26,7 +26,7 @@ nucleus supports **JDK 1.8** or higher.
 `[module]` - the module you need to import. **See [Modules](#modules).** <br>
 `[version]` - the module version.
 
-### About Project
+## About Project
 **nucleus** is a project created in 2024 initially for internal use for Hyko Team.
 As we added more function and modules to nucleus, we decided to make it open source on GitHub in early 2025.
 And now we are positively maintaining this project. If you have any problems using this project,

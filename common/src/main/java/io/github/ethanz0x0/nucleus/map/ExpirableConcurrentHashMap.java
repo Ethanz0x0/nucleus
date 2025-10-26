@@ -1,13 +1,12 @@
-package io.github.ethanz0x0.nucleus.object.map;
+package io.github.ethanz0x0.nucleus.map;
 
-import java.util.HashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+
+import static io.github.ethanz0x0.nucleus.Checks.checkArgument;
+import static io.github.ethanz0x0.nucleus.Checks.checkNotNull;
 
 /**
- * Expirable version of hash map, based on expirable map.
+ * Expirable version of concurrent hash map, based on expirable map.
  *
  * @see ExpirableMap
  * @param <K>
@@ -15,12 +14,12 @@ import java.util.concurrent.TimeUnit;
  * @param <V>
  *        The type of mapped values
  */
-public class ExpirableHashMap<K, V> extends HashMap<K, V> implements ExpirableMap<K, V> {
+public class ExpirableConcurrentHashMap<K, V> extends ConcurrentHashMap<K, V> implements ExpirableMap<K, V> {
 
     private static final ScheduledExecutorService scheduler =
             Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
 
-    private final HashMap<K, ScheduledFuture<?>> toRemove = new HashMap<>();
+    private final ConcurrentHashMap<K, ScheduledFuture<?>> toRemove = new ConcurrentHashMap<>();
 
     /**
      * Associates the specified value with the specified key in this map.
@@ -39,30 +38,36 @@ public class ExpirableHashMap<K, V> extends HashMap<K, V> implements ExpirableMa
      */
     @Override
     public V put(K key, V value, long expiration) {
+        checkNotNull(key, "key cannot be null");
+        checkArgument(expiration > 0, "expiration must be larger than 0");
+
         if (toRemove.containsKey(key)) {
             toRemove.remove(key).cancel(true);
         }
         V put = super.put(key, value);
-        if (expiration <= 0) {
+        ScheduledFuture<?> future = scheduler.schedule(() -> {
             super.remove(key);
-        } else {
-            ScheduledFuture<?> future = scheduler.schedule(() -> {
-                super.remove(key);
-                toRemove.remove(key);
-            }, expiration, TimeUnit.MILLISECONDS);
-            toRemove.put(key, future);
-        }
+            toRemove.remove(key);
+        }, expiration, TimeUnit.MILLISECONDS);
+        toRemove.put(key, future);
         return put;
     }
 
     /**
      * {@inheritDoc}
      *
+     * @param key
+     *        The key that needs to be removed
+     * @return
+     *         The previous value associated with {@code key}, or
+     *         {@code null} if there was no mapping for {@code key}
      * @throws NullPointerException
      *         If the specified key is null
      */
     @Override
     public V remove(Object key) {
+        checkNotNull(key, "key cannot be null");
+
         V value = super.remove(key);
         toRemove.remove(key);
         return value;
@@ -76,11 +81,12 @@ public class ExpirableHashMap<K, V> extends HashMap<K, V> implements ExpirableMa
      */
     @Override
     public boolean remove(Object key, Object value) {
+        checkNotNull(key, "key cannot be null");
+
         boolean success = super.remove(key, value);
         if (success) {
             toRemove.remove(key);
         }
         return success;
     }
-
 }

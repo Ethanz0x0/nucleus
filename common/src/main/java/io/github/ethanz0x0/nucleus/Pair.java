@@ -17,9 +17,9 @@ public class Pair<K, V> {
     /**
      * Creates a instance of the provided key and value.
      *
-     * @param k
+     * @param key
      *        The key
-     * @param v
+     * @param value
      *        The value
      * @return
      *         An instance of the provided key and value
@@ -28,8 +28,8 @@ public class Pair<K, V> {
      * @param <V>
      *        The type of the value object
      */
-    public static <K, V> Pair<K, V> of(K k, V v) {
-        return new Pair<>(k, v);
+    public static <K, V> Pair<K, V> of(K key, V value) {
+        return new Pair<>(key, value);
     }
 
     private final K key;

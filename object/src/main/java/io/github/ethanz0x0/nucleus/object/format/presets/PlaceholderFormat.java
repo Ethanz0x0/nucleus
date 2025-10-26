@@ -58,7 +58,7 @@ public class PlaceholderFormat extends Format {
         StringBuffer result = new StringBuffer();
         while (matcher.find()) {
             String placeholder = matcher.group(1);
-            matcher.appendReplacement(result, replacementTable.getOrDefault(placeholder, "").toString());
+            matcher.appendReplacement(result, String.valueOf(replacementTable.getOrDefault(placeholder, "")));
         }
         matcher.appendTail(result);
         return result.toString();

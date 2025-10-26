@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static io.github.ethanz0x0.nucleus.Checks.checkArgument;
+import static io.github.ethanz0x0.nucleus.Checks.checkNotNull;
+
 /**
  * A utility class for processing files.
  */
@@ -19,6 +22,8 @@ public class FileUtil {
      *         String content of the file
      */
     public static String readContentAsString(File file) throws IOException {
+        checkNotNull(file, "file cannot be null");
+
         StringBuilder content = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -38,6 +43,8 @@ public class FileUtil {
      *         The formatted file length (e.g. 152MB)
      */
     public static String formatFileLength(long fileLength) {
+        checkArgument(fileLength >= 0, "file length must be positive");
+
         String[] units = new String[]{"B", "KB", "MB", "GB", "TB", "PB", "EB"};
         int unitIndex = 0;
         double len = fileLength;

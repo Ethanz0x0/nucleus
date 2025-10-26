@@ -1,4 +1,4 @@
-package io.github.ethanz0x0.nucleus.object.map;
+package io.github.ethanz0x0.nucleus.map;
 
 import java.util.Map;
 
