@@ -2,6 +2,8 @@ package io.github.ethanz0x0.nucleus;
 
 import java.util.regex.Pattern;
 
+import static io.github.ethanz0x0.nucleus.Checks.checkNotNull;
+
 /**
  * Provides methods for parsing IP address into host and port.
  * IPv4 and IPv6 are supported.
@@ -34,6 +36,8 @@ public class HostPort {
      *         The {@code HostPort} instance
      */
     public static HostPort fromString(String input) {
+        checkNotNull(input, "input address cannot be null");
+
         String trimmedInput = input.trim();
 
         String hostPart;

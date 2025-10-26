@@ -3,6 +3,9 @@ package io.github.ethanz0x0.nucleus;
 import java.util.Collections;
 import java.util.List;
 
+import static io.github.ethanz0x0.nucleus.Checks.checkArgument;
+import static io.github.ethanz0x0.nucleus.Checks.checkNotNull;
+
 
 /**
  * A utility class for handling pagination operation on lists.
@@ -29,6 +32,9 @@ public class Pager {
      *        The type of elements in the list
      */
     public static <T> List<T> getPage(List<T> data, int size, int page) {
+        checkNotNull(data, "data list cannot be null");
+        checkArgument(size > 0, "size must be larger than 0");
+
         int startIndex = (page - 1) * size;
         int endIndex = Math.min(startIndex + size, data.size());
 
@@ -55,6 +61,9 @@ public class Pager {
      *        The type of elements in the list
      */
     public static <T> int getPageAt(List<T> data, T obj, int size) {
+        checkNotNull(data, "data list cannot be null");
+        checkArgument(size > 0, "size must be larger than 0");
+
         int totalPage = calculatePages(data.size(), size);
         for (int i = 0; i < totalPage; i++) {
             List<T> current = getPage(data, size, i);
@@ -75,6 +84,7 @@ public class Pager {
      *         The total number of pages
      */
     public static int calculatePages(int amount, int size) {
+        checkArgument(size > 0, "size must be larger than 0");
         return (int) Math.ceil((double) amount / size);
     }
 
