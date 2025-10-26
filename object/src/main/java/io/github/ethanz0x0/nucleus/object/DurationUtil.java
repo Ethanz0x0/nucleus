@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  *   <li>Weeks are 7 days</li>
  * </ul>
  */
-public final class DurationUtil {
+public class DurationUtil {
 
     // Regex pattern for matching duration components
     private static final Pattern DURATION_PATTERN = Pattern.compile(

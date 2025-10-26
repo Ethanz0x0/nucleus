@@ -3,7 +3,7 @@ package io.github.ethanz0x0.nucleus.object;
 /**
  * Utility class for common time and date formatting operations.
  */
-public final class TimeUtil {
+public class TimeUtil {
 
     /**
      * Formats a total number of seconds into a clock-style string.
