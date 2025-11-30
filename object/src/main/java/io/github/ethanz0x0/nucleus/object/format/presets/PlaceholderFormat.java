@@ -87,6 +87,11 @@ public class PlaceholderFormat extends Format {
             return this;
         }
 
+        public Builder append(Map<String, Object> replacementTable) {
+            this.replacementTable.putAll(replacementTable);
+            return this;
+        }
+
         public PlaceholderFormat build() {
             return new PlaceholderFormat(placeholderSection, replacementTable);
         }
