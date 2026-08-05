@@ -21,13 +21,18 @@ jobs:
           distribution: temurin
           java-version: "8"
           cache: maven
-
           server-id: central
           server-username: MAVEN_CENTRAL_USERNAME
           server-password: MAVEN_CENTRAL_PASSWORD
-
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
+
+      - name: Set Maven version from Git tag
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          echo "Setting Maven version to: $VERSION"
+          mvn versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
+        shell: bash
 
       - name: Build and Publish
         run: mvn -B clean deploy
