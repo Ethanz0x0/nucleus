@@ -17,7 +17,7 @@ public class NumericOrderedPlaceholderFormat extends Format {
         PlaceholderFormat.Builder builder = PlaceholderFormat.builder().placeholderSection(placeholderSection);
         int index = 0;
         for (Object replacement : replacements) {
-            builder.append(String.valueOf(index), replacement);
+            builder.append(String.valueOf(index), replacement.toString());
             index ++;
         }
         placeholderFormat = builder.build();
